@@ -28,7 +28,7 @@ import {
 
 const GOALS = { kcal: 2230, protein: 160, carbs: 140, fat: 75 };
 const TARGET_WEIGHT = 73;
-const COLORS = { kcal: "#111827", protein: "#2563eb", carbs: "#16a34a", fat: "#dc2626" };
+const COLORS = { kcal: "#f8fafc", protein: "#60a5fa", carbs: "#34d399", fat: "#fb7185" };
 
 const COMMON_FOODS = [
   { name: "Pollo", amount: "300g", kcal: 495, protein: 69, carbs: 0, fat: 22, aliases: ["pollo", "pechuga"] },
@@ -101,7 +101,7 @@ function isWeekend(dateString) {
 }
 
 function sleepInfo(hours) {
-  if (!hours) return { score: 0, label: "sin datos", msg: "Mete tus horas de sueño para calcular calidad.", cls: "bg-neutral-100 text-neutral-600" };
+  if (!hours) return { score: 0, label: "sin datos", msg: "Mete tus horas de sueño para calcular calidad.", cls: "bg-white/10 text-white/60" };
   if (hours < 5.5) return { score: 35, label: "malo", msg: "Muy poco sueño: peor recuperación, hambre y rendimiento.", cls: "bg-red-50 text-red-700" };
   if (hours < 6.5) return { score: 60, label: "justo", msg: "Aceptable pero justo. Intenta acercarte a 7-8h.", cls: "bg-yellow-50 text-yellow-800" };
   if (hours <= 8.5) return { score: 90, label: "bueno", msg: "Buen rango para recuperación, entreno y control del hambre.", cls: "bg-green-50 text-green-700" };
@@ -113,7 +113,7 @@ function screenInfo(hours) {
       score: 0,
       label: "sin datos",
       msg: "Mete el tiempo de uso del móvil.",
-      cls: "bg-neutral-100 text-neutral-600",
+      cls: "bg-white/10 text-white/60",
     };
   }
 
@@ -306,16 +306,16 @@ export default function App() {
   setScreenHours("");
 }
   return (
-    <div className="min-h-screen bg-gradient-to-b from-neutral-50 to-neutral-100 text-neutral-950 px-3 py-3 pb-28 md:p-4 md:pb-32 overflow-x-hidden">
-      <div className="w-full max-w-md md:max-w-5xl mx-auto space-y-4 md:space-y-6">
-        <header className="rounded-[1.6rem] bg-white border border-neutral-200 p-4 shadow-[0_8px_30px_rgba(0,0,0,0.06)]">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-neutral-500">definición diaria</p>
-          <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-none">Looksmaxxing</h1>
-          <p className="text-neutral-500 mt-2 text-sm leading-snug">Dieta · entreno · sueño · físico · móvil</p>
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,#312e81_0,transparent_34%),radial-gradient(circle_at_top_right,#7c2d12_0,transparent_28%),linear-gradient(to_bottom,#050505,#0a0a0a_45%,#020202)] text-white px-3 pt-3 pb-44 md:p-4 md:pb-40 overflow-x-hidden">
+      <div className="w-full max-w-md md:max-w-5xl mx-auto space-y-4 md:space-y-6 relative">
+        <header className="rounded-[1.8rem] bg-white/10 backdrop-blur-2xl border border-white/10 p-4 shadow-[0_18px_60px_rgba(0,0,0,0.45)]">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-white/45">definición diaria</p>
+          <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-none bg-gradient-to-r from-white via-violet-200 to-cyan-200 bg-clip-text text-transparent">Looksmaxxing</h1>
+          <p className="text-white/55 mt-2 text-sm leading-snug">Dieta · entreno · sueño · físico · móvil</p>
         </header>
 
         <Card title="Día que estás editando">
-          <input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} className="w-full rounded-2xl border border-neutral-200 px-4 py-3 bg-white text-base" />
+          <input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} className="w-full rounded-2xl border border-white/10 px-4 py-3 bg-white/10 text-white text-base" />
         </Card>
 
         {activeTab === "progress" && (
@@ -327,8 +327,8 @@ export default function App() {
               <StatCard title="Día válido" value={successToday ? "Sí ✅" : "No"} sub="kcal + proteína" />
             </section>
             <Card title="Objetivo 73kg">
-              <div className="h-4 bg-neutral-100 rounded-full overflow-hidden mb-3"><div className="h-full bg-neutral-900 rounded-full" style={{ width: `${progress}%` }} /></div>
-              <div className="flex justify-between text-sm text-neutral-500"><span>{startWeight ? `${startWeight}kg inicio` : "mete tu primer peso"}</span><span>{Math.round(progress)}%</span><span>73kg</span></div>
+              <div className="h-4 bg-white/10 rounded-full overflow-hidden mb-3"><div className="h-full bg-neutral-900 rounded-full" style={{ width: `${progress}%` }} /></div>
+              <div className="flex justify-between text-sm text-white/50"><span>{startWeight ? `${startWeight}kg inicio` : "mete tu primer peso"}</span><span>{Math.round(progress)}%</span><span>73kg</span></div>
             </Card>
             <DietCalendar foodsByDate={foodsByDate} />
           </div>
@@ -336,7 +336,7 @@ export default function App() {
 
         {activeTab === "diet" && (
           <div className="space-y-4 md:space-y-6">
-            <p className="text-sm text-neutral-500">Trackeando: {new Date(selectedDate + "T12:00:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" })}</p>
+            <p className="text-sm text-white/50">Trackeando: {new Date(selectedDate + "T12:00:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" })}</p>
             <section className="grid grid-cols-2 gap-3 md:gap-4">
               <MacroPie label="kcal" value={totals.kcal} goal={GOALS.kcal} color={COLORS.kcal} unit=" kcal" />
               <MacroPie label="proteína" value={totals.protein} goal={GOALS.protein} color={COLORS.protein} unit="g" />
@@ -344,14 +344,14 @@ export default function App() {
               <MacroPie label="grasas" value={totals.fat} goal={GOALS.fat} color={COLORS.fat} unit="g" />
             </section>
             <Card title="Añadir comida online">
-              <textarea value={foodInput} onChange={(e) => { setFoodInput(e.target.value); setFoodSearch(e.target.value.replace(/\d+(?:[.,]\d+)?\s*(kg|g|ml|l|uds|ud|huevos?)/gi, "").trim()); }} placeholder="Ej: 300g yogur griego Hacendado" className="w-full min-h-24 rounded-2xl border border-neutral-200 px-4 py-3 mb-3 resize-none bg-white text-base leading-snug" />
-              <button onClick={runFoodSearch} className="w-full rounded-2xl bg-neutral-900 text-white py-3 font-semibold flex items-center justify-center gap-2"><Search size={18}/> Buscar macros online</button>
-              {foodLoading && <p className="text-sm text-neutral-500 mt-3">Buscando...</p>}
+              <textarea value={foodInput} onChange={(e) => { setFoodInput(e.target.value); setFoodSearch(e.target.value.replace(/\d+(?:[.,]\d+)?\s*(kg|g|ml|l|uds|ud|huevos?)/gi, "").trim()); }} placeholder="Ej: 300g yogur griego Hacendado" className="w-full min-h-24 rounded-2xl border border-white/10 px-4 py-3 mb-3 resize-none bg-white/10 text-white text-base leading-snug" />
+              <button onClick={runFoodSearch} className="w-full rounded-2xl bg-white text-black py-3 font-semibold flex items-center justify-center gap-2"><Search size={18}/> Buscar macros online</button>
+              {foodLoading && <p className="text-sm text-white/50 mt-3">Buscando...</p>}
               {foodError && <p className="text-sm text-red-600 mt-3">{foodError}</p>}
               <div className="space-y-2 mt-4">{foodResults.map((item, i) => <FoodResult key={i} item={item} onAdd={() => addOnlineFood(item)} />)}</div>
             </Card>
             <Card title="Comidas de hoy">
-              {foods.length === 0 ? <p className="text-sm text-neutral-500">Todavía no has añadido comidas para este día.</p> : <div className="space-y-2">{foods.map((food) => <FoodRow key={food.id} food={food} onRemove={() => setFoodsForSelected((prev) => prev.filter((x) => x.id !== food.id))} />)}</div>}
+              {foods.length === 0 ? <p className="text-sm text-white/50">Todavía no has añadido comidas para este día.</p> : <div className="space-y-2">{foods.map((food) => <FoodRow key={food.id} food={food} onRemove={() => setFoodsForSelected((prev) => prev.filter((x) => x.id !== food.id))} />)}</div>}
             </Card>
             <Card title="Recomendaciones del día">
               <div className="space-y-2">{recommendations.map((food) => <Recommendation key={food.name} food={food} onAdd={() => quickAdd(food)} />)}</div>
@@ -361,8 +361,8 @@ export default function App() {
 
         {activeTab === "training" && (
           <div className="space-y-4 md:space-y-6">
-            <Card title="Gym de hoy"><p className="text-sm text-neutral-500 mb-3">Hoy toca: {trainingTypeForDate(new Date(selectedDate + "T12:00:00"))}</p><button onClick={toggleGym} className={`w-full rounded-2xl py-3 font-semibold ${selectedTraining.gymDone ? "bg-green-600 text-white" : "bg-neutral-900 text-white"}`}>{selectedTraining.gymDone ? "Entreno marcado ✅" : "He entrenado lo que tocaba"}</button></Card>
-            <Card title="Pasos"><div className="flex items-center gap-3 mb-3"><Footprints/><p className="font-semibold">{selectedTraining.steps || 0} / 10000 pasos</p></div><div className="h-4 bg-neutral-100 rounded-full overflow-hidden mb-4"><div className="h-full bg-emerald-500 rounded-full" style={{ width: `${Math.min(100, ((selectedTraining.steps || 0) / 10000) * 100)}%` }} /></div><input value={steps} onChange={(e) => setSteps(e.target.value)} placeholder="10000" className="w-full rounded-2xl border border-neutral-200 px-4 py-3 mb-3 bg-white text-base"/><button onClick={saveSteps} className={`w-full rounded-2xl py-3 font-semibold ${selectedTraining.steps >= 10000 ? "bg-emerald-500 text-white" : "bg-neutral-900 text-white"}`}>{selectedTraining.steps >= 10000 ? "Pasos cumplidos ✅" : "Guardar pasos"}</button></Card>
+            <Card title="Gym de hoy"><p className="text-sm text-white/50 mb-3">Hoy toca: {trainingTypeForDate(new Date(selectedDate + "T12:00:00"))}</p><button onClick={toggleGym} className={`w-full rounded-2xl py-3 font-semibold ${selectedTraining.gymDone ? "bg-green-400 text-black" : "bg-white text-black"}`}>{selectedTraining.gymDone ? "Entreno marcado ✅" : "He entrenado lo que tocaba"}</button></Card>
+            <Card title="Pasos"><div className="flex items-center gap-3 mb-3"><Footprints/><p className="font-semibold">{selectedTraining.steps || 0} / 10000 pasos</p></div><div className="h-4 bg-white/10 rounded-full overflow-hidden mb-4"><div className="h-full bg-emerald-500 rounded-full" style={{ width: `${Math.min(100, ((selectedTraining.steps || 0) / 10000) * 100)}%` }} /></div><input value={steps} onChange={(e) => setSteps(e.target.value)} placeholder="10000" className="w-full rounded-2xl border border-white/10 px-4 py-3 mb-3 bg-white/10 text-white text-base"/><button onClick={saveSteps} className={`w-full rounded-2xl py-3 font-semibold ${selectedTraining.steps >= 10000 ? "bg-emerald-400 text-black" : "bg-white text-black"}`}>{selectedTraining.steps >= 10000 ? "Pasos cumplidos ✅" : "Guardar pasos"}</button></Card>
             <TrainingCalendar trainingLogs={trainingLogs}/>
             <StepsChart trainingLogs={trainingLogs}/>
           </div>
@@ -371,8 +371,8 @@ export default function App() {
         {activeTab === "physique" && (
           <div className="space-y-4 md:space-y-6">
             <section className="grid grid-cols-2 gap-3 md:gap-4"><StatCard title="Peso inicial" value={startWeight ? `${startWeight}kg` : "--"}/><StatCard title="Peso actual" value={currentWeight ? `${currentWeight}kg` : "--"}/><StatCard title="% graso" value={bodyfat}/><StatCard title="Faltan" value={remainingKg !== null ? `${remainingKg.toFixed(1)}kg` : "--"}/></section>
-            <Card title="Peso del día"><input value={weight} onChange={(e) => setWeight(e.target.value)} className="w-full rounded-2xl border border-neutral-200 px-4 py-3 mb-3 bg-white text-base" placeholder="78.4"/><button onClick={saveWeight} className="w-full rounded-2xl bg-neutral-900 text-white py-3 font-semibold">Guardar peso</button></Card>
-            <Card title="Mirror check"><div className="grid grid-cols-3 gap-2 md:gap-3"><label className="aspect-[3/4] rounded-2xl border border-dashed border-neutral-300 flex flex-col items-center justify-center text-neutral-500 cursor-pointer"><Camera/><span className="text-xs mt-2">Añadir foto</span><input type="file" accept="image/*" onChange={(e) => savePhoto(e.target.files?.[0])} className="hidden"/></label>{photos.slice(0, 2).map((item) => <PhotoCard key={item.id} item={item}/>)}</div></Card>
+            <Card title="Peso del día"><input value={weight} onChange={(e) => setWeight(e.target.value)} className="w-full rounded-2xl border border-white/10 px-4 py-3 mb-3 bg-white/10 text-white text-base" placeholder="78.4"/><button onClick={saveWeight} className="w-full rounded-2xl bg-white text-black py-3 font-semibold">Guardar peso</button></Card>
+            <Card title="Mirror check"><div className="grid grid-cols-3 gap-2 md:gap-3"><label className="aspect-[3/4] rounded-2xl border border-dashed border-neutral-300 flex flex-col items-center justify-center text-white/50 cursor-pointer"><Camera/><span className="text-xs mt-2">Añadir foto</span><input type="file" accept="image/*" onChange={(e) => savePhoto(e.target.files?.[0])} className="hidden"/></label>{photos.slice(0, 2).map((item) => <PhotoCard key={item.id} item={item}/>)}</div></Card>
             <WeightChart weights={weights}/>
           </div>
         )}
@@ -380,7 +380,7 @@ export default function App() {
         {activeTab === "sleep" && (
           <div className="space-y-4 md:space-y-6">
             <section className="grid grid-cols-2 gap-3 md:gap-4"><StatCard title="Horas" value={selectedSleep.hours ? `${selectedSleep.hours}h` : "--"}/><StatCard title="Calidad" value={`${selectedSleepInfo.score}/100`} sub={selectedSleepInfo.label}/></section>
-            <Card title="Sueño del día"><input value={sleepHours} onChange={(e) => setSleepHours(e.target.value)} placeholder="7.5" className="w-full rounded-2xl border border-neutral-200 px-4 py-3 mb-3 bg-white text-base"/><button onClick={saveSleep} className="w-full rounded-2xl bg-neutral-900 text-white py-3 font-semibold">Guardar sueño</button><div className={`mt-4 rounded-2xl p-4 text-sm font-medium ${selectedSleepInfo.cls}`}>{selectedSleepInfo.msg}</div></Card>
+            <Card title="Sueño del día"><input value={sleepHours} onChange={(e) => setSleepHours(e.target.value)} placeholder="7.5" className="w-full rounded-2xl border border-white/10 px-4 py-3 mb-3 bg-white/10 text-white text-base"/><button onClick={saveSleep} className="w-full rounded-2xl bg-white text-black py-3 font-semibold">Guardar sueño</button><div className={`mt-4 rounded-2xl p-4 text-sm font-medium ${selectedSleepInfo.cls}`}>{selectedSleepInfo.msg}</div></Card>
             <SleepChart sleepLogs={sleepLogs}/>
             <SleepCalendar sleepLogs={sleepLogs}/>
           </div>
@@ -389,7 +389,7 @@ export default function App() {
         {activeTab === "masturbation" && (
           <div className="space-y-4 md:space-y-6">
             <section className="grid grid-cols-2 gap-3 md:gap-4"><StatCard title="Esta semana" value={pajaWeek.done ? "Usada" : "Disponible"}/><StatCard title="Regla" value="1/semana" sub="solo sábado o domingo"/></section>
-            <Card title="Registro"><div className={`rounded-2xl p-4 text-sm font-medium mb-4 ${pajaWeek.boxCls}`}>{pajaWeek.msg}</div><button onClick={togglePaja} className={`w-full rounded-2xl py-3 font-semibold ${masturbationLogs[selectedDate]?.done ? "bg-red-600 text-white" : "bg-neutral-900 text-white"}`}>{masturbationLogs[selectedDate]?.done ? "Quitar registro" : "Registrar paja"}</button></Card>
+            <Card title="Registro"><div className={`rounded-2xl p-4 text-sm font-medium mb-4 ${pajaWeek.boxCls}`}>{pajaWeek.msg}</div><button onClick={togglePaja} className={`w-full rounded-2xl py-3 font-semibold ${masturbationLogs[selectedDate]?.done ? "bg-red-400 text-black" : "bg-white text-black"}`}>{masturbationLogs[selectedDate]?.done ? "Quitar registro" : "Registrar paja"}</button></Card>
             <PajaCalendar logs={masturbationLogs}/>
           </div>
         )}
@@ -415,11 +415,11 @@ export default function App() {
                 value={screenHours}
                 onChange={(e) => setScreenHours(e.target.value)}
                 placeholder="2.5"
-                className="w-full rounded-2xl border border-neutral-200 px-4 py-3 mb-3 bg-white text-base"
+                className="w-full rounded-2xl border border-white/10 px-4 py-3 mb-3 bg-white/10 text-white text-base"
               />
               <button
                 onClick={saveScreenTime}
-                className="w-full rounded-2xl bg-neutral-900 text-white py-3 font-semibold"
+                className="w-full rounded-2xl bg-white text-black py-3 font-semibold"
               >
                 Guardar uso del móvil
               </button>
@@ -435,8 +435,8 @@ export default function App() {
 
       </div>
 
-     <nav className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-neutral-200 px-2 py-2 z-50 shadow-[0_-8px_30px_rgba(0,0,0,0.06)]">
-  <div className="flex gap-2 overflow-x-auto max-w-md md:max-w-4xl mx-auto pb-1">
+     <nav className="fixed bottom-5 left-0 right-0 px-3 z-50">
+  <div className="flex gap-2 overflow-x-auto max-w-md md:max-w-4xl mx-auto rounded-[1.8rem] bg-black/70 backdrop-blur-2xl border border-white/15 p-2.5 shadow-[0_18px_80px_rgba(0,0,0,0.65)]">
 
     <Tab
       active={activeTab === "progress"}
@@ -493,24 +493,24 @@ export default function App() {
   );
 }
 
-function Card({ title, children }) { return <section className="rounded-[1.6rem] md:rounded-[2rem] bg-white border border-neutral-200 p-4 md:p-5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] overflow-hidden"><h2 className="text-xl md:text-2xl font-black mb-4 leading-tight tracking-tight">{title}</h2>{children}</section>; }
-function StatCard({ title, value, sub }) { return <div className="rounded-[1.6rem] md:rounded-[2rem] bg-white border border-neutral-200 p-4 md:p-5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] min-w-0"><p className="text-[10px] md:text-xs uppercase tracking-[0.16em] text-neutral-500 mb-2 truncate">{title}</p><h3 className="text-2xl md:text-3xl font-black leading-none break-words">{value}</h3>{sub && <p className="text-[11px] md:text-xs text-neutral-500 mt-1 leading-tight">{sub}</p>}</div>; }
-function Tab({ active, onClick, icon, label }) { return <button onClick={onClick} className={`shrink-0 w-[4.65rem] md:w-24 rounded-2xl py-2.5 md:py-3 flex flex-col items-center justify-center gap-1 text-[10px] md:text-xs font-semibold transition active:scale-95 ${active ? "bg-neutral-900 text-white shadow-lg" : "bg-neutral-100 text-neutral-600"}`}>{icon}<span className="leading-none whitespace-nowrap">{label}</span></button>; }
-function FoodRow({ food, onRemove }) { return <div className="rounded-2xl bg-neutral-100 border border-neutral-200 p-3 flex items-center justify-between gap-3 min-w-0"><div><p className="font-semibold text-sm leading-tight break-words">{food.name}</p><p className="text-xs text-neutral-500">{food.kcal} kcal · P {food.protein} · C {food.carbs} · G {food.fat}</p><p className="text-[10px] text-neutral-400">{food.source || "online"}</p></div><button onClick={onRemove} className="rounded-full bg-white border border-neutral-200 p-2"><X size={14}/></button></div>; }
-function FoodResult({ item, onAdd }) { return <div className="rounded-2xl bg-neutral-50 border border-neutral-200 p-3 flex justify-between gap-3"><div><p className="font-semibold text-sm leading-tight break-words">{item.name}</p><p className="text-xs text-neutral-500">{item.brand || "Open Food Facts"} · por 100g</p><p className="text-xs text-neutral-500">{Math.round(item.kcal100)} kcal · P {Math.round(item.protein100)} · C {Math.round(item.carbs100)} · G {Math.round(item.fat100)}</p></div><button onClick={onAdd} className="h-9 w-9 rounded-full bg-neutral-900 text-white flex items-center justify-center"><Plus size={16}/></button></div>; }
-function Recommendation({ food, onAdd }) { return <div className="rounded-2xl bg-neutral-50 border border-neutral-200 p-3 flex justify-between items-center"><div><p className="font-semibold">{food.name}</p><p className="text-xs text-neutral-500">P {food.protein} · C {food.carbs} · G {food.fat}</p></div><div className="text-right flex items-center gap-3"><div><p className="font-bold text-sm">{food.amount}</p><p className="text-xs text-neutral-500">{food.kcal} kcal</p></div><button onClick={onAdd} className="h-9 w-9 rounded-full bg-neutral-900 text-white flex items-center justify-center"><Plus size={16}/></button></div></div>; }
-function PhotoCard({ item }) { return <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-neutral-200 relative"><img src={item.photo} className="w-full h-full object-cover"/><div className="absolute bottom-0 left-0 right-0 bg-white/80 p-2 text-xs font-semibold">{item.date} · {item.weight || "--"}kg</div></div>; }
-function MacroPie({ label, value, goal, color, unit }) { const pct = Math.round((value / goal) * 100); const data = [{ name: "comido", value: Math.min(value, goal) }, { name: "faltante", value: Math.max(goal - value, 0) }]; return <div className="rounded-[1.6rem] md:rounded-[2rem] bg-white border border-neutral-200 p-3 md:p-5 shadow-[0_8px_30px_rgba(0,0,0,0.06)] min-w-0"><div className="h-28 md:h-36 relative"><ResponsiveContainer width="100%" height="100%"><PieChart><Pie data={data} innerRadius={45} outerRadius={62} dataKey="value" startAngle={90} endAngle={-270}><Cell fill={color}/><Cell fill="#e5e7eb"/></Pie></PieChart></ResponsiveContainer><div className="absolute inset-0 flex flex-col items-center justify-center"><p className={`text-xl md:text-2xl font-black ${pct > 100 ? "text-red-600" : "text-neutral-900"}`}>{pct}%</p><p className="text-xs text-neutral-500">{label}</p></div></div><p className="font-semibold text-center mt-2 text-sm md:text-base leading-tight">{Math.round(value)} / {goal}{unit}</p></div>; }
-function CalendarGrid({ renderDay }) { const today = new Date(); const year = today.getFullYear(); const month = today.getMonth(); const firstDay = new Date(year, month, 1); const daysInMonth = new Date(year, month + 1, 0).getDate(); const startOffset = (firstDay.getDay() + 6) % 7; const cells = [...Array.from({ length: startOffset }, () => null), ...Array.from({ length: daysInMonth }, (_, i) => new Date(year, month, i + 1))]; return <div className="w-full overflow-hidden"><div className="grid grid-cols-7 gap-1.5 md:gap-2 mb-2">{["L","M","X","J","V","S","D"].map((d) => <div key={d} className="text-center text-xs font-bold text-neutral-400">{d}</div>)}</div><div className="grid grid-cols-7 gap-1.5 md:gap-2">{cells.map((date, i) => !date ? <div key={i} className="aspect-square"/> : renderDay(date))}</div></div>; }
-function DietCalendar({ foodsByDate }) { return <Card title="Calendario de cumplimiento"><CalendarGrid renderDay={(date) => { const key = isoForDate(date); const foods = foodsByDate[key] || []; const totals = foods.reduce((a, f) => ({ kcal: a.kcal + f.kcal, protein: a.protein + f.protein }), { kcal: 0, protein: 0 }); const success = totals.kcal >= GOALS.kcal * 0.9 && totals.kcal <= GOALS.kcal * 1.1 && totals.protein >= GOALS.protein * 0.9; const cheat = totals.kcal > GOALS.kcal * 1.1 && totals.kcal <= GOALS.kcal * 1.5; const hasLog = foods.length > 0; let cls = "bg-neutral-50 border-neutral-200 text-neutral-500"; let label = ""; if (success) { cls = "bg-green-50 border-green-200 text-green-700"; label = "✓"; } else if (cheat) { cls = "bg-yellow-100 border-yellow-300 text-yellow-900"; label = "★"; } else if (hasLog) { cls = "bg-red-50 border-red-200 text-red-700"; label = "✕"; } return <div key={key} className={`aspect-square rounded-xl md:rounded-2xl border flex flex-col items-center justify-center text-[10px] md:text-xs font-bold leading-tight ${cls}`}><span>{date.getDate()}</span><span>{label}</span></div>; }}/></Card>; }
-function TrainingCalendar({ trainingLogs }) { return <Card title="Calendario training"><CalendarGrid renderDay={(date) => { const key = isoForDate(date); const log = trainingLogs[key] || { gymDone: false, steps: 0 }; const plan = trainingTypeForDate(date); const isGymDay = plan !== "Rest"; const gym = log.gymDone; const steps = Number(log.steps || 0) >= 10000; let cls = "bg-neutral-50 border-neutral-200 text-neutral-500"; let label = plan; if (gym && steps && isGymDay) { cls = "bg-blue-100 border-blue-300 text-blue-900"; label = "Full"; } else if (gym && isGymDay) { cls = "bg-purple-100 border-purple-300 text-purple-900"; label = "Gym"; } else if (steps) { cls = "bg-emerald-100 border-emerald-300 text-emerald-900"; label = "Pasos"; } else if (isGymDay) { cls = "bg-red-50 border-red-200 text-red-700"; label = "Nada"; } return <div key={key} className={`aspect-square rounded-xl md:rounded-2xl border flex flex-col items-center justify-center text-[10px] md:text-xs font-bold leading-tight ${cls}`}><span>{date.getDate()}</span><span>{label}</span></div>; }}/></Card>; }
+function Card({ title, children }) { return <section className="rounded-[1.8rem] md:rounded-[2.1rem] bg-white/[0.07] backdrop-blur-2xl border border-white/10 p-4 md:p-5 shadow-[0_18px_60px_rgba(0,0,0,0.32)] overflow-hidden"><h2 className="text-xl md:text-2xl font-black mb-4 leading-tight tracking-tight text-white">{title}</h2>{children}</section>; }
+function StatCard({ title, value, sub }) { return <div className="rounded-[1.8rem] md:rounded-[2.1rem] bg-white/[0.08] backdrop-blur-2xl border border-white/10 p-4 md:p-5 shadow-[0_18px_60px_rgba(0,0,0,0.32)] min-w-0"><p className="text-[10px] md:text-xs uppercase tracking-[0.16em] text-white/45 mb-2 truncate">{title}</p><h3 className="text-2xl md:text-3xl font-black leading-none break-words bg-gradient-to-r from-white to-violet-200 bg-clip-text text-transparent">{value}</h3>{sub && <p className="text-[11px] md:text-xs text-white/45 mt-1 leading-tight">{sub}</p>}</div>; }
+function Tab({ active, onClick, icon, label }) { return <button onClick={onClick} className={`shrink-0 w-[5.05rem] md:w-24 rounded-[1.35rem] py-3.5 md:py-3.5 flex flex-col items-center justify-center gap-1.5 text-[10px] md:text-xs font-bold transition-all duration-300 active:scale-95 ${active ? "bg-white/10 text-black shadow-[0_0_28px_rgba(255,255,255,0.28)] scale-[1.03]" : "bg-white/8 text-white/60 hover:bg-white/15"}`}>{icon}<span className="leading-none whitespace-nowrap">{label}</span></button>; }
+function FoodRow({ food, onRemove }) { return <div className="rounded-2xl bg-white/10 border border-white/10 p-3 flex items-center justify-between gap-3 min-w-0"><div><p className="font-semibold text-sm leading-tight break-words">{food.name}</p><p className="text-xs text-white/50">{food.kcal} kcal · P {food.protein} · C {food.carbs} · G {food.fat}</p><p className="text-[10px] text-white/35">{food.source || "online"}</p></div><button onClick={onRemove} className="rounded-full bg-white/10 border border-white/10 p-2"><X size={14}/></button></div>; }
+function FoodResult({ item, onAdd }) { return <div className="rounded-2xl bg-white/5 border border-white/10 p-3 flex justify-between gap-3"><div><p className="font-semibold text-sm leading-tight break-words">{item.name}</p><p className="text-xs text-white/50">{item.brand || "Open Food Facts"} · por 100g</p><p className="text-xs text-white/50">{Math.round(item.kcal100)} kcal · P {Math.round(item.protein100)} · C {Math.round(item.carbs100)} · G {Math.round(item.fat100)}</p></div><button onClick={onAdd} className="h-9 w-9 rounded-full bg-white text-black flex items-center justify-center"><Plus size={16}/></button></div>; }
+function Recommendation({ food, onAdd }) { return <div className="rounded-2xl bg-white/5 border border-white/10 p-3 flex justify-between items-center"><div><p className="font-semibold">{food.name}</p><p className="text-xs text-white/50">P {food.protein} · C {food.carbs} · G {food.fat}</p></div><div className="text-right flex items-center gap-3"><div><p className="font-bold text-sm">{food.amount}</p><p className="text-xs text-white/50">{food.kcal} kcal</p></div><button onClick={onAdd} className="h-9 w-9 rounded-full bg-white text-black flex items-center justify-center"><Plus size={16}/></button></div></div>; }
+function PhotoCard({ item }) { return <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-neutral-200 relative"><img src={item.photo} className="w-full h-full object-cover"/><div className="absolute bottom-0 left-0 right-0 bg-white/10 p-2 text-xs font-semibold">{item.date} · {item.weight || "--"}kg</div></div>; }
+function MacroPie({ label, value, goal, color, unit }) { const pct = Math.round((value / goal) * 100); const data = [{ name: "comido", value: Math.min(value, goal) }, { name: "faltante", value: Math.max(goal - value, 0) }]; return <div className="rounded-[1.8rem] md:rounded-[2.1rem] bg-white/[0.08] backdrop-blur-2xl border border-white/10 p-3 md:p-5 shadow-[0_18px_60px_rgba(0,0,0,0.32)] min-w-0"><div className="h-40 md:h-44 relative"><ResponsiveContainer width="100%" height="100%"><PieChart><Pie data={data} innerRadius={42} outerRadius={58} dataKey="value" startAngle={90} endAngle={-270}><Cell fill={color}/><Cell fill="rgba(255,255,255,0.14)"/></Pie></PieChart></ResponsiveContainer><div className="absolute inset-0 flex flex-col items-center justify-center"><p className={`text-xl md:text-2xl font-black ${pct > 100 ? "text-red-300" : "text-white"}`}>{pct}%</p><p className="text-xs text-white/45">{label}</p></div></div><p className="font-semibold text-center mt-2 text-sm md:text-base leading-tight text-white/80">{Math.round(value)} / {goal}{unit}</p></div>; }
+function CalendarGrid({ renderDay }) { const today = new Date(); const year = today.getFullYear(); const month = today.getMonth(); const firstDay = new Date(year, month, 1); const daysInMonth = new Date(year, month + 1, 0).getDate(); const startOffset = (firstDay.getDay() + 6) % 7; const cells = [...Array.from({ length: startOffset }, () => null), ...Array.from({ length: daysInMonth }, (_, i) => new Date(year, month, i + 1))]; return <div className="w-full overflow-hidden"><div className="grid grid-cols-7 gap-1.5 md:gap-2 mb-2">{["L","M","X","J","V","S","D"].map((d) => <div key={d} className="text-center text-xs font-bold text-white/35">{d}</div>)}</div><div className="grid grid-cols-7 gap-1.5 md:gap-2">{cells.map((date, i) => !date ? <div key={i} className="aspect-square"/> : renderDay(date))}</div></div>; }
+function DietCalendar({ foodsByDate }) { return <Card title="Calendario de cumplimiento"><CalendarGrid renderDay={(date) => { const key = isoForDate(date); const foods = foodsByDate[key] || []; const totals = foods.reduce((a, f) => ({ kcal: a.kcal + f.kcal, protein: a.protein + f.protein }), { kcal: 0, protein: 0 }); const success = totals.kcal >= GOALS.kcal * 0.9 && totals.kcal <= GOALS.kcal * 1.1 && totals.protein >= GOALS.protein * 0.9; const cheat = totals.kcal > GOALS.kcal * 1.1 && totals.kcal <= GOALS.kcal * 1.5; const hasLog = foods.length > 0; let cls = "bg-white/5 border-white/10 text-white/50"; let label = ""; if (success) { cls = "bg-green-50 border-green-200 text-green-700"; label = "✓"; } else if (cheat) { cls = "bg-yellow-100 border-yellow-300 text-yellow-900"; label = "★"; } else if (hasLog) { cls = "bg-red-50 border-red-200 text-red-700"; label = "✕"; } return <div key={key} className={`aspect-square rounded-xl md:rounded-2xl border flex flex-col items-center justify-center text-[10px] md:text-xs font-bold leading-tight ${cls}`}><span>{date.getDate()}</span><span>{label}</span></div>; }}/></Card>; }
+function TrainingCalendar({ trainingLogs }) { return <Card title="Calendario training"><CalendarGrid renderDay={(date) => { const key = isoForDate(date); const log = trainingLogs[key] || { gymDone: false, steps: 0 }; const plan = trainingTypeForDate(date); const isGymDay = plan !== "Rest"; const gym = log.gymDone; const steps = Number(log.steps || 0) >= 10000; let cls = "bg-white/5 border-white/10 text-white/50"; let label = plan; if (gym && steps && isGymDay) { cls = "bg-blue-100 border-blue-300 text-blue-900"; label = "Full"; } else if (gym && isGymDay) { cls = "bg-purple-100 border-purple-300 text-purple-900"; label = "Gym"; } else if (steps) { cls = "bg-emerald-100 border-emerald-300 text-emerald-900"; label = "Pasos"; } else if (isGymDay) { cls = "bg-red-50 border-red-200 text-red-700"; label = "Nada"; } return <div key={key} className={`aspect-square rounded-xl md:rounded-2xl border flex flex-col items-center justify-center text-[10px] md:text-xs font-bold leading-tight ${cls}`}><span>{date.getDate()}</span><span>{label}</span></div>; }}/></Card>; }
 function StepsChart({ trainingLogs }) { const data = Object.entries(trainingLogs).sort(([a],[b]) => a.localeCompare(b)).slice(-10).map(([date, log]) => ({ date: date.slice(5), steps: Number(log.steps || 0) })); return <Card title="Historial de pasos"><Chart data={data} x="date" y="steps" color="#10b981" domain={[0, 15000]}/></Card>; }
 function WeightChart({ weights }) { const data = [...weights].reverse().slice(-10).map((w) => ({ date: w.date.slice(5), weight: Number(w.weight) })); return <Card title="Historial de peso"><Chart data={data} x="date" y="weight" color="#4f46e5" domain={["auto", "auto"]}/></Card>; }
 function SleepChart({ sleepLogs }) { const data = Object.entries(sleepLogs).sort(([a],[b]) => a.localeCompare(b)).slice(-10).map(([date, log]) => ({ date: date.slice(5), hours: Number(log.hours || 0) })); return <Card title="Historial de sueño"><Chart data={data} x="date" y="hours" color="#6366f1" domain={[0, 10]}/></Card>; }
-function Chart({ data, x, y, color, domain }) { return <div className="h-48 md:h-56 -ml-2"><ResponsiveContainer width="100%" height="100%"><LineChart data={data}><CartesianGrid strokeDasharray="3 3"/><XAxis dataKey={x}/><YAxis domain={domain}/><Tooltip/><Line type="monotone" dataKey={y} stroke={color} strokeWidth={3} dot/></LineChart></ResponsiveContainer></div>; }
-function SleepCalendar({ sleepLogs }) { return <Card title="Calendario sueño"><CalendarGrid renderDay={(date) => { const key = isoForDate(date); const h = Number(sleepLogs[key]?.hours || 0); const info = sleepInfo(h); const cls = h ? info.cls.replace("text-", "border-").replace("bg-", "bg-") : "bg-neutral-50 border-neutral-200 text-neutral-500"; return <div key={key} className={`aspect-square rounded-xl md:rounded-2xl border flex flex-col items-center justify-center text-[10px] md:text-xs font-bold leading-tight ${cls}`}><span>{date.getDate()}</span><span>{h ? `${h}h` : ""}</span></div>; }}/></Card>; }
+function Chart({ data, x, y, color, domain }) { return <div className="h-56 md:h-64 -ml-2 pt-2 pb-3"><ResponsiveContainer width="100%" height="100%"><LineChart data={data} margin={{ top: 22, right: 18, left: -8, bottom: 16 }}><CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.10)"/><XAxis dataKey={x} tick={{ fill: "rgba(255,255,255,0.55)", fontSize: 11 }}/><YAxis domain={domain} tick={{ fill: "rgba(255,255,255,0.55)", fontSize: 11 }}/><Tooltip contentStyle={{ background: "#111", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 14, color: "#fff" }}/><Line type="monotone" dataKey={y} stroke={color} strokeWidth={3} dot/></LineChart></ResponsiveContainer></div>; }
+function SleepCalendar({ sleepLogs }) { return <Card title="Calendario sueño"><CalendarGrid renderDay={(date) => { const key = isoForDate(date); const h = Number(sleepLogs[key]?.hours || 0); const info = sleepInfo(h); const cls = h ? info.cls.replace("text-", "border-").replace("bg-", "bg-") : "bg-white/5 border-white/10 text-white/50"; return <div key={key} className={`aspect-square rounded-xl md:rounded-2xl border flex flex-col items-center justify-center text-[10px] md:text-xs font-bold leading-tight ${cls}`}><span>{date.getDate()}</span><span>{h ? `${h}h` : ""}</span></div>; }}/></Card>; }
 function getPajaWeek(date, logs) { const wk = weekKeyFromDate(date); const entries = Object.entries(logs).filter(([d, v]) => v.done && weekKeyFromDate(d) === wk); const done = entries.length > 0; const selectedDone = logs[date]?.done; const badWeekday = entries.some(([d]) => !isWeekend(d)); let msg = "Disponible: úsala solo sábado o domingo."; let boxCls = "bg-green-50 text-green-700"; if (badWeekday) { msg = "Usada entre semana: este finde queda bloqueado."; boxCls = "bg-red-50 text-red-700"; } else if (done && !selectedDone) { msg = "Ya has usado la de esta semana."; boxCls = "bg-yellow-50 text-yellow-800"; } else if (selectedDone) { msg = isWeekend(date) ? "Uso válido de la semana." : "Uso fuera de finde: bloquea este finde."; boxCls = isWeekend(date) ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"; } return { done, msg, boxCls }; }
-function PajaCalendar({ logs }) { return <Card title="Calendario paja"><CalendarGrid renderDay={(date) => { const key = isoForDate(date); const done = logs[key]?.done; const weekend = isWeekend(key); let cls = weekend ? "bg-green-50 border-green-200 text-green-700" : "bg-neutral-50 border-neutral-200 text-neutral-500"; let label = weekend ? "OK" : "No"; if (done && weekend) { cls = "bg-blue-100 border-blue-300 text-blue-900"; label = "✓"; } if (done && !weekend) { cls = "bg-red-50 border-red-200 text-red-700"; label = "Bloq"; } return <div key={key} className={`aspect-square rounded-xl md:rounded-2xl border flex flex-col items-center justify-center text-[10px] md:text-xs font-bold leading-tight ${cls}`}><span>{date.getDate()}</span><span>{label}</span></div>; }}/></Card>; }
+function PajaCalendar({ logs }) { return <Card title="Calendario paja"><CalendarGrid renderDay={(date) => { const key = isoForDate(date); const done = logs[key]?.done; const weekend = isWeekend(key); let cls = weekend ? "bg-green-50 border-green-200 text-green-700" : "bg-white/5 border-white/10 text-white/50"; let label = weekend ? "OK" : "No"; if (done && weekend) { cls = "bg-blue-100 border-blue-300 text-blue-900"; label = "✓"; } if (done && !weekend) { cls = "bg-red-50 border-red-200 text-red-700"; label = "Bloq"; } return <div key={key} className={`aspect-square rounded-xl md:rounded-2xl border flex flex-col items-center justify-center text-[10px] md:text-xs font-bold leading-tight ${cls}`}><span>{date.getDate()}</span><span>{label}</span></div>; }}/></Card>; }
 function ScreenChart({ screenLogs }) {
   const data = Object.entries(screenLogs)
     .sort(([a], [b]) => a.localeCompare(b))
@@ -535,7 +535,7 @@ function ScreenCalendar({ screenLogs }) {
           const key = isoForDate(date);
           const h = Number(screenLogs[key]?.hours || 0);
           const info = screenInfo(h);
-          const cls = h ? info.cls : "bg-neutral-50 border-neutral-200 text-neutral-500";
+          const cls = h ? info.cls : "bg-white/5 border-white/10 text-white/50";
 
           return (
             <div
